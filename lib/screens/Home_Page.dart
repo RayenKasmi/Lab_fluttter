@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage> {
-  int _current_index = 0;
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context){
@@ -32,12 +32,12 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 34, 99, 238),
       ),
-      body: screens[_current_index],
+      body: screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _current_index,
+        currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
-            _current_index = index;
+            _currentIndex = index;
           });
         },
         items: const[
