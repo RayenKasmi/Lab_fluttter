@@ -24,13 +24,7 @@ class _BookCardState extends State<BookCard> {
   @override
   Widget build(BuildContext context) {
     // Card gives material effect; Container inside for custom decoration
-    return InkWell(
-      onTap:() => {
-        setState(() {
-          cardColor = getRandomColor();
-        })
-      },
-      child: Card(
+    return Card(
         elevation: 6,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         margin: const EdgeInsets.symmetric(vertical: 10),
@@ -43,12 +37,23 @@ class _BookCardState extends State<BookCard> {
           child: Row(
             children: [
               // Image block
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: SizedBox(
-                  width: 110,
-                  height: 160,
-                  child: _buildImage(),
+              Material(
+                child: InkWell(
+                  radius: 6000,
+                  splashColor: Colors.deepPurple,
+                  onTap:() => {
+                    setState(() {
+                      cardColor = getRandomColor();
+                    })
+                  },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: SizedBox(
+                      width: 110,
+                      height: 160,
+                      child: _buildImage(),
+                    ),
+                  ),
                 ),
               ),
       
@@ -86,8 +91,7 @@ class _BookCardState extends State<BookCard> {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 
   Widget _buildImage() {
