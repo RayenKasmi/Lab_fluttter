@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tp0/common/custom_drawer.dart';
+import 'package:tp0/common/tab_bar.dart';
 import 'package:tp0/widgets/singup_form_widget.dart';
 import '../widgets/book_slide.dart';
 
@@ -13,14 +15,18 @@ class HomePage extends StatefulWidget{
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
+  bool navigationToggle = true;
 
   @override
   Widget build(BuildContext context){
+    
     final List<Widget> screens = [
       BookSlide(title: widget.title),
       SingupFormWidget(),
     ];
     return Scaffold(
+      drawer: CustomDrawer(toggleNavigation: () => setState(() { navigationToggle = !navigationToggle; })
+      ),
       appBar: AppBar(
         title: Text(
             widget.title,
@@ -32,8 +38,12 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 34, 99, 238),
       ),
-      body: screens[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
+      body: navigationToggle ? 
+      MyTabBar(title: widget.title) :
+      screens[_currentIndex],
+      bottomNavigationBar: navigationToggle ?
+      null
+      :BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
@@ -46,5 +56,6 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+    //return MyTabBar(title: widget.title);
   }
 }
