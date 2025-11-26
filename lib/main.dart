@@ -4,19 +4,28 @@ void main() {
   runApp(const App());
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
 
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  bool isDark = false;
+
+  void toggleTheme() {
+    setState(() => isDark = !isDark);
+  }
+  
   @override
   Widget build(BuildContext){
     return MaterialApp(
       title: 'TP0',
-      theme: ThemeData(
+      theme: isDark ? ThemeData.dark() : ThemeData(
         colorSchemeSeed:  Color.fromARGB(255, 34, 99, 238)
       ),
-      darkTheme: ThemeData.dark(),
-      themeMode: ThemeMode.system,
-      home: const HomePage(title: 'Store INSAT'),
+      home: HomePage(title: 'Store INSAT', onToggleTheme: toggleTheme),
     );
   }
 }

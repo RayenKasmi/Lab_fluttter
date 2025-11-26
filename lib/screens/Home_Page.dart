@@ -5,9 +5,10 @@ import 'package:tp0/widgets/singup_form_widget.dart';
 import '../widgets/book_slide.dart';
 
 class HomePage extends StatefulWidget{
-  const HomePage({super.key, required this.title});
+  const HomePage({super.key, required this.title, required this.onToggleTheme});
 
   final String title;
+  final VoidCallback onToggleTheme;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -37,6 +38,12 @@ class _HomePageState extends State<HomePage> {
           ),
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 34, 99, 238),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.brightness_6),
+            onPressed: widget.onToggleTheme, // toggle theme
+          )
+        ],
       ),
       body: navigationToggle ? 
       MyTabBar(title: widget.title) :
