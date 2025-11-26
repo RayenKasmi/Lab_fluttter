@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp0/common/custom_drawer.dart';
 import 'package:tp0/common/tab_bar.dart';
+import 'package:tp0/widgets/basket.dart';
 import 'package:tp0/widgets/singup_form_widget.dart';
 import '../widgets/book_slide.dart';
 
@@ -24,6 +25,7 @@ class _HomePageState extends State<HomePage> {
     final List<Widget> screens = [
       BookSlide(title: widget.title),
       SingupFormWidget(),
+      BasketScreen(),
     ];
     return Scaffold(
       drawer: CustomDrawer(toggleNavigation: () => setState(() { navigationToggle = !navigationToggle; })
@@ -60,6 +62,8 @@ class _HomePageState extends State<HomePage> {
         items: const[
           BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Catalogue'),
           BottomNavigationBarItem(icon: Icon(Icons.login), label: 'Signup'),
+          BottomNavigationBarItem(icon: Icon(Icons.shop), label: 'Basket'),
+
         ],
       ),
     );

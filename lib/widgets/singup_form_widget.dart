@@ -2,7 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:tp0/decorators/custom_input_decorator.dart';
 import 'package:tp0/models/user.dart';
-import 'package:tp0/screens/user_service.dart';
+import 'package:tp0/services/user_service.dart';
 
 class SingupFormWidget extends StatefulWidget {
   final UserService userService = UserService();

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tp0/models/book.dart';
+import 'package:tp0/services/database_helper.dart';
 
 class BookDetailPage extends StatefulWidget {
   final Book book;
@@ -15,6 +16,7 @@ class BookDetailPage extends StatefulWidget {
 class _BookDetailPageState extends State<BookDetailPage> {
   late double bookPrice;
   bool is_discount_applied = false;
+  bool is_ordered = false;
 
   @override
   void initState() {
@@ -99,6 +101,32 @@ class _BookDetailPageState extends State<BookDetailPage> {
               ),
               child: Text(!
                 is_discount_applied ? "20% Discount!!!!" : "Discount Applied",
+                style: TextStyle(
+                ),
+              ),
+            ),
+
+
+            const SizedBox(height: 24),
+
+            ElevatedButton(
+              onPressed: () {
+                if(!is_ordered){
+                  DatabaseHelper().insertBook(
+                    Book(id: widget.book.id, name: widget.book.name, image: widget.book.image, price: bookPrice)
+                    );
+                }
+                setState(() {
+                  if(!is_ordered){
+                    is_ordered = true;
+                  }
+                });
+              }, 
+              style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(Colors.amber)
+              ),
+              child: Text(
+                !is_ordered ? "Order!!!!" : "Successful!!!",
                 style: TextStyle(
                 ),
               ),
