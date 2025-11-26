@@ -7,7 +7,7 @@ class CustomInputDecoration {
       labelText: label,
       hintText: hint,
       filled: true,
-      fillColor: const Color.fromARGB(255, 165, 165, 165),
+      fillColor: const Color.fromARGB(255, 233, 228, 228),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide.none,
