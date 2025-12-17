@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tp0/widgets/basket.dart';
 import 'package:tp0/widgets/book_slide.dart';
 import 'package:tp0/widgets/singup_form_widget.dart';
+import 'package:tp0/screens/quotes_screen.dart';
 
 class MyTabBar extends StatefulWidget {
   final String title;
@@ -25,6 +26,7 @@ class _MyTabBarState extends State<MyTabBar> with TickerProviderStateMixin {
       BookSlide(title: widget.title),
       SingupFormWidget(),
       BasketScreen(),
+      QuoteScreen(),
     ];
     tabController = TabController(length: pages.length, vsync: this);
   }
@@ -48,6 +50,7 @@ class _MyTabBarState extends State<MyTabBar> with TickerProviderStateMixin {
               Tab(icon: Icon(Icons.home_outlined), text: "Home"),
               Tab(icon: Icon(Icons.login), text: "Signup"),
               Tab(icon: Icon(Icons.shop), text: "Basket"),
+              Tab(icon: Icon(Icons.format_quote), text: "Quotes"),
             ],
           ),
         ),

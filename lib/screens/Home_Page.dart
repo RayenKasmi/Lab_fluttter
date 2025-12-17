@@ -4,6 +4,7 @@ import 'package:tp0/common/tab_bar.dart';
 import 'package:tp0/widgets/basket.dart';
 import 'package:tp0/widgets/singup_form_widget.dart';
 import '../widgets/book_slide.dart';
+import 'quotes_screen.dart';
 
 class HomePage extends StatefulWidget{
   const HomePage({super.key, required this.title, required this.onToggleTheme});
@@ -26,6 +27,7 @@ class _HomePageState extends State<HomePage> {
       BookSlide(title: widget.title),
       SingupFormWidget(),
       BasketScreen(),
+      QuoteScreen(),
     ];
     return Scaffold(
       drawer: CustomDrawer(toggleNavigation: () => setState(() { navigationToggle = !navigationToggle; })
@@ -63,6 +65,7 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Catalogue'),
           BottomNavigationBarItem(icon: Icon(Icons.login), label: 'Signup'),
           BottomNavigationBarItem(icon: Icon(Icons.shop), label: 'Basket'),
+          BottomNavigationBarItem(icon: Icon(Icons.format_quote), label: 'Quotes'),
 
         ],
       ),
