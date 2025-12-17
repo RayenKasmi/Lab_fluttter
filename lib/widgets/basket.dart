@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tp0/models/book.dart';
 import 'package:tp0/services/database_helper.dart';
+import 'package:tp0/services/firebase_service.dart';
 
 class BasketScreen extends StatefulWidget {
   const BasketScreen({super.key});
@@ -15,6 +17,7 @@ class _BasketScreenState extends State<BasketScreen> {
   @override
   Widget build(BuildContext context) {
     return 
+    /*
     FutureBuilder<List<Book>>(
         future: DatabaseHelper().fetchBasketBooks(), // The async task
         builder: (context, snapshot) {
@@ -52,6 +55,43 @@ class _BasketScreenState extends State<BasketScreen> {
             },
           );
         },
+    );*/
+  StreamBuilder<QuerySnapshot>(
+  stream: FireStoreService().getBooksStream(), // Listening to the stream
+  builder: (context, snapshot) {
+    
+    if (snapshot.hasError) {
+      return const Text('Something went wrong');
+    }
+
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return const CircularProgressIndicator();
+    }
+
+    // Reactivity happens here: whenever DB changes, this rebuilds automatically
+    final data = snapshot.requireData;
+    
+        return ListView.builder(
+          itemCount: data.size,
+          itemBuilder: (context, index) {
+            var bookData = data.docs[index];
+            return Card(
+              child: ListTile(
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: SizedBox(
+                      width: 110,
+                      height: 160,
+                      child: _buildImage(bookData["image"]),
+                    ),
+                  ), 
+                  title: Text(bookData["name"]),
+                  subtitle: Text("${bookData["price"]} TND"),
+                ),
+            );
+          },
+        );
+      },
     );
   }
 

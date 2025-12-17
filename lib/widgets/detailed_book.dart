@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tp0/models/book.dart';
 import 'package:tp0/services/database_helper.dart';
+import 'package:tp0/services/firebase_service.dart';
 
 class BookDetailPage extends StatefulWidget {
   final Book book;
@@ -112,9 +113,10 @@ class _BookDetailPageState extends State<BookDetailPage> {
             ElevatedButton(
               onPressed: () {
                 if(!is_ordered){
-                  DatabaseHelper().insertBook(
+                  /*DatabaseHelper().insertBook(
                     Book(id: widget.book.id, name: widget.book.name, image: widget.book.image, price: bookPrice)
-                    );
+                    );*/
+                    FireStoreService().addBook(widget.book.name, bookPrice, widget.book.image);
                 }
                 setState(() {
                   if(!is_ordered){
